@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 
 export default function PlayerInfo({ playerId }) {
   const [playerInfo, setPlayerInfo] = useState(null);
   const [error, setError] = useState(null);
+
+  playerId = useParams().playerId;
 
   useEffect(() => {
     const fetchPlayerInfo = async () => {
@@ -34,6 +37,7 @@ export default function PlayerInfo({ playerId }) {
           <p>Trofeus: {playerInfo.trophies}</p>
           <p>Recorde de Trofeus: {playerInfo.highestTrophies}</p>
           <p>Clube: {playerInfo.club.name}</p>
+          <Link to={"/"}>&larr;Back</Link>
         </div>
       ) : error ? (
         <p>{error}</p>
